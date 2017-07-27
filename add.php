@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST["action"]) && ($_POST["action"] = "add")) {
+	require_once ("connMysql.php");
 	print("ok");
 	$sql_query = "INSERT INTO `student` ( `cName`, `cSex`, `cBirthday`, `cEmail`, `cPhone`, `cAddr`) VALUES (";
 	$sql_query .= "'".$_POST["cName"]."',";
@@ -9,7 +10,11 @@ if (isset($_POST["action"]) && ($_POST["action"] = "add")) {
 	$sql_query .= "'".$_POST["cPhone"]."',";
 	$sql_query .= "'".$_POST["cAddr"]."');";
 
-	echo "> $sql_query";
+	// echo "> $sql_query";
+	mysqli_query($conn, $sql_query);
+	mysqli_query($conn);
+
+	header("Location: data.php");
 }
 //require_once ("connMysql.php");
 //$sql = "SELECT * FROM `student`";
