@@ -1,8 +1,19 @@
 <?php
+if (isset($_POST["action"]) && ($_POST["action"] = "add")) {
+	print("ok");
+	$sql_query = "INSERT INTO `student` ( `cName`, `cSex`, `cBirthday`, `cEmail`, `cPhone`, `cAddr`) VALUES (";
+	$sql_query .= "'".$_POST["cName"]."',";
+	$sql_query .= "'".$_POST["cSex"]."',";
+	$sql_query .= "'".$_POST["cBirthday"]."',";
+	$sql_query .= "'".$_POST["cEmail"]."',";
+	$sql_query .= "'".$_POST["cPhone"]."',";
+	$sql_query .= "'".$_POST["cAddr"]."');";
+
+	echo "> $sql_query";
+}
 //require_once ("connMysql.php");
 //$sql = "SELECT * FROM `student`";
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +28,8 @@
 // 	$total_records = mysqli_num_rows($result);
 //print $total_records;
 ?>
-	<p align="center"><a herf="data.php">回主畫面</a></p>
-	<form action="" method="get">
+<p align="center"><a herf="data.php">回主畫面</a></p>
+	<form action="" method="post">
 	<table border="1" align="center">
 	    <tr>
 	        <th>欄位</th>
@@ -26,30 +37,34 @@
 	    </tr>
 	    <tr>
 	        <td>姓名</td>
-	        <td><input type="" name="" size="50"></td>
+	        <td><input type="text" name="cName" size="50"></td>
 	    </tr>
 	    <tr>
 	        <td>性別</td>
-	        <td><input  type="radio" name="sex" value="male">男 <input  type="radio" name="sex" value="female">女</td>
+	        <td><input  type="radio" name="cSex" value="male">男 <input  type="radio" name="sex" value="female">女</td>
 	    </tr>
 	    <tr>
 	        <td>生日</td>
-	        <td><input type="" name="" size="50"></td>
+	        <td><input type="date" name="cBirthday" size="50"></td>
 	    </tr>
 	    <tr>
 	        <td>電子郵件</td>
-	        <td><input type="" name="" size="50"></td>
+	        <td><input type="text" name="cEmail" size="50"></td>
 	    </tr>
 	    <tr>
 	        <td>電話</td>
-	        <td><input type="" name="" size="50"></td>
+	        <td><input type="" name="cPhone" size="50"></td>
 	    </tr>
 	    <tr>
 	        <td>住址</td>
-	        <td><input type="" name="" size="100"></td>
+	        <td><input type="" name="cAddr" size="100"></td>
 	    </tr>
 	    <tr>
-	        <td colspan="2" align="center"><button type="submit">新增資料</button> <button type="reset">重新填寫</button></td>
+	        <td colspan="2" align="center">
+	        <input name="action" type="hidden" value="add">
+	        <button type="submit">新增資料</button>
+	        <button type="reset">重新填寫</button>
+	        </td>
 
 	    </tr>
 
@@ -57,9 +72,9 @@
 	</table>
 	</form>
 
-	<?php
-	mysqli_close($conn);
-}
+<?php
+// mysqli_close($conn);
+// }
 ?>
 
 </body>
